@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio Bloqueado</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        h1 {
+            color: #991b1b;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .loading {
+            background: #fee2e2;
+            padding: 15px;
+            border-radius: 10px;
+            color: #7f1d1d;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        
+        .sitio {
+            background: #fee2e2;
+            padding: 15px;
+            border-radius: 10px;
+            color: #7f1d1d;
+            font-weight: 600;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        
+        .mensaje {
+            font-size: 1.3rem;
+            color: #374151;
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: #10b981;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: #059669;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🛡️</div>
+        <h1>¡Sitio Bloqueado!</h1>
+        
+        <div id="sitio-loading" class="loading">
+            🔄 Cargando...
+        </div>
+        
+        <div id="sitio-bloqueado" class="sitio" style="display: none;">
+            🚫 
+        </div>
+        
+        <div class="mensaje">
+            💪 Recuerda por qué empezaste. Cada momento de resistencia te hace más fuerte.
+        </div>
+        
+        <div class="buttons">
+            <a href="http://localhost/blockbet/dashboard.php" target="_blank" class="btn">
+                ✅ Ir al Dashboard
+            </a>
+            
+            <a href="javascript:window.close()" class="btn btn-secondary">
+                ← Cerrar pestaña
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Obtener sitio desde URL
+        const params = new URLSearchParams(window.location.search);
+        const sitio = params.get('sitio');
+        
+        if (sitio) {
+            document.getElementById('sitio-loading').style.display = 'none';
+            const sitioDiv = document.getElementById('sitio-bloqueado');
+            sitioDiv.textContent = '🚫 ' + sitio;
+            sitioDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

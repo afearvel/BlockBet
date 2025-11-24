@@ -1,0 +1,405 @@
+/* -----------------------------------
+   VARIABLES Y BASE
+----------------------------------- */
+:root {
+    --bg-primary: #f5f7fb;
+    --bg-secondary: #ffffff;
+    --text-primary: #1e1e2f;
+    --text-secondary: #6b7280;
+    --primary-blue: #4f46e5;
+    --accent-purple: #a855f7;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.08);
+    --shadow-md: 0 3px 10px rgba(0,0,0,0.1);
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-sm: 6px;
+}
+
+body {
+    background-color: var(--bg-primary);
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: var(--text-primary);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+/* -----------------------------------
+   SIDEBAR
+----------------------------------- */
+.sidebar {
+    background: var(--bg-secondary);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar-header {
+    text-align: center;
+}
+
+.sidebar-header .logo {
+    width: 60px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 12px 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    transition: 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--primary-blue);
+}
+
+/* PERFIL DEL USUARIO */
+.user-profile-sidebar {
+    background: var(--bg-primary);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-info img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.user-name-sidebar {
+    font-weight: 700;
+}
+
+.user-email-sidebar {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* PROGRESO */
+.progress-sidebar {
+    text-align: center;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+}
+
+.progress-sidebar h3 {
+    font-size: 2.2rem;
+    margin: 0;
+    background: linear-gradient(135deg, #4f46e5, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.progress-sidebar p {
+    margin: 8px 0;
+}
+
+.progress-bar {
+    background: var(--bg-primary);
+    height: 8px;
+    border-radius: 6px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4f46e5, #a855f7);
+    border-radius: 6px;
+}
+
+.meta-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* ESTADÍSTICAS */
+.stats-sidebar {
+    background: var(--bg-secondary);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.stats-sidebar .stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stats-sidebar .stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-value {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+/* CERRAR SESIÓN */
+.btn-logout {
+    background: var(--danger);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* -----------------------------------
+   HEADER SUPERIOR
+----------------------------------- */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+}
+
+.tabs-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.tab {
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+}
+
+.tab.active,
+.tab:hover {
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--primary-blue);
+}
+
+.user-menu {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.user-menu img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+/* -----------------------------------
+   CONTENIDO PRINCIPAL
+----------------------------------- */
+.dashboard-content {
+    padding: 22px;
+}
+
+/* BIENVENIDA */
+.welcome-banner {
+    background: linear-gradient(135deg, #4f46e5, #a855f7);
+    padding: 25px;
+    border-radius: var(--radius-lg);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-banner .date {
+    opacity: 0.8;
+    font-weight: 600;
+}
+
+/* GRID PRINCIPAL */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 20px;
+}
+
+/* -----------------------------------
+   CARDS GENERALES
+----------------------------------- */
+.card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 25px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+}
+
+.card-body {
+    margin-top: 16px;
+}
+
+.badge {
+    background: var(--primary-blue);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.badge.danger {
+    background: var(--danger);
+}
+
+/* -----------------------------------
+   MENSAJE MOTIVACIONAL
+----------------------------------- */
+.motivational-card {
+    border-left: 4px solid var(--primary-blue);
+}
+
+.motivational-card .quote {
+    font-style: italic;
+    color: var(--text-primary);
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* -----------------------------------
+   SITIOS BLOQUEADOS
+----------------------------------- */
+.sites-list .site-item {
+    display: flex;
+    justify-content: space-between;
+    background: var(--bg-primary);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    margin-bottom: 10px;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: rgba(16,185,129,0.2);
+    color: var(--success);
+}
+
+/* -----------------------------------
+   INTENTOS DETECTADOS
+----------------------------------- */
+.attempt-item {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px;
+    align-items: center;
+    padding: 12px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-md);
+    margin-bottom: 10px;
+}
+
+.attempt-time {
+    color: var(--text-secondary);
+}
+
+.status-badge.blocked {
+    background: rgba(239,68,68,0.2);
+    color: var(--danger);
+}
+
+/* -----------------------------------
+   RED DE APOYO
+----------------------------------- */
+.support-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-primary);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    margin-bottom: 18px;
+}
+
+.support-person img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.support-name {
+    font-weight: 600;
+}
+
+.online-status {
+    margin-left: auto;
+    font-size: 1.4rem;
+}
+
+.online-status.online {
+    color: var(--success);
+}
+
+.online-status.offline {
+    color: var(--text-secondary);
+}
+
+/* -----------------------------------
+   RESPONSIVE
+----------------------------------- */
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

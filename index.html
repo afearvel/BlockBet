@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockBet - Recupera tu Control</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-auth">
+        <div class="auth-card">
+            <div class="logo-section">
+                <div class="logo">🛡️</div>
+                <h1>BlockBet</h1>
+                <p class="subtitle">Recupera el control sobre la ludopatía digital</p>
+            </div>
+
+            <div class="auth-toggle">
+                <button class="toggle-btn active" data-mode="login">Iniciar Sesión</button>
+                <button class="toggle-btn" data-mode="register">Crear Cuenta</button>
+            </div>
+
+            <!-- Formulario de Login -->
+            <form class="auth-form" id="login-form" method="POST" action="login.php">
+                <div class="form-group">
+                    <label for="login-email">Correo Electrónico</label>
+                    <input type="email" id="login-email" name="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Contraseña</label>
+                    <input type="password" id="login-password" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Iniciar Sesión</button>
+                <p class="form-link">¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
+            </form>
+
+            <!-- Formulario de Registro -->
+            <form class="auth-form hidden" id="register-form" method="POST" action="registrar.php">
+                <div class="form-group">
+                    <label for="register-name">Nombre Completo</label>
+                    <input type="text" id="register-name" name="nombre" placeholder="Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Correo Electrónico</label>
+                    <input type="email" id="register-email" name="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Contraseña</label>
+                    <input type="password" id="register-password" name="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Confirmar Contraseña</label>
+                    <input type="password" id="register-confirm" name="password_confirm" placeholder="••••••••" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">Acepto los términos y condiciones</label>
+                </div>
+                <button type="submit" class="btn-primary full-width">Crear Cuenta</button>
+                <p class="form-link">¿Ya tienes cuenta? <a href="#">Inicia sesión aquí</a></p>
+            </form>
+
+            <div class="divider">
+                <span>O continúa con</span>
+            </div>
+
+            <div class="social-buttons">
+                <button class="btn-social btn-google">
+                    <span>Google</span>
+                </button>
+                <button class="btn-social btn-github">
+                    <span>GitHub</span>
+                </button>   
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>¿Por qué BlockBet?</h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="icon">🔐</div>
+                    <h3>Bloqueo Personalizado</h3>
+                    <p>Controla qué sitios bloquear según tus necesidades</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">📊</div>
+                    <h3>Estadísticas Claras</h3>
+                    <p>Visualiza tu progreso con gráficas intuitivas</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">💪</div>
+                    <h3>Motivación Diaria</h3>
+                    <p>Recibe mensajes de apoyo personalizados</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">👥</div>
+                    <h3>Acompañamiento</h3>
+                    <p>Invita a alguien de confianza a supervisar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
