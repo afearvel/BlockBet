@@ -78,6 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ========== SIMULAR CARGA ==========
     window.addEventListener('load', function() {
-        console.log('✅ BlockBet cargado correctamente');
+        console.log(' BlockBet cargado correctamente');
     });
 });

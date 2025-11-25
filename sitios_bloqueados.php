@@ -224,16 +224,16 @@ $sitios_activos = count(array_filter($sitios, fn($s) => $s['activo'] == 1));
         <a href="dashboard.php" class="back-link">← Volver al Dashboard</a>
         
         <div class="page-header">
-            <h1>🔒 Sitios Bloqueados</h1>
+            <h1> Sitios Bloqueados</h1>
             <p>Gestiona los sitios que deseas bloquear</p>
         </div>
 
         <?php if (isset($mensaje_exito)): ?>
-        <div class="alert alert-success">✓ <?php echo $mensaje_exito; ?></div>
+        <div class="alert alert-success"> <?php echo $mensaje_exito; ?></div>
         <?php endif; ?>
 
         <?php if (isset($mensaje_error)): ?>
-        <div class="alert alert-error">✗ <?php echo $mensaje_error; ?></div>
+        <div class="alert alert-error"> <?php echo $mensaje_error; ?></div>
         <?php endif; ?>
 
         <!-- Estadísticas -->
@@ -250,7 +250,7 @@ $sitios_activos = count(array_filter($sitios, fn($s) => $s['activo'] == 1));
 
         <!-- Agregar Sitio -->
         <div class="add-site-card">
-            <h3 style="margin-bottom: 20px;">➕ Agregar Nuevo Sitio</h3>
+            <h3 style="margin-bottom: 20px;"> Agregar Nuevo Sitio</h3>
             <form method="POST">
                 <div class="form-row">
                     <div class="form-group">
@@ -264,7 +264,7 @@ $sitios_activos = count(array_filter($sitios, fn($s) => $s['activo'] == 1));
 
         <!-- Lista de Sitios -->
         <div class="sites-list-card">
-            <h3 style="margin-bottom: 20px;">📋 Mis Sitios Bloqueados</h3>
+            <h3 style="margin-bottom: 20px;"> Mis Sitios Bloqueados</h3>
             
             <?php if (count($sitios) > 0): ?>
                 <?php foreach ($sitios as $s): ?>

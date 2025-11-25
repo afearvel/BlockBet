@@ -184,7 +184,7 @@ $fecha_hoy = date('l, j \d\e F');
                         <!-- MENSAJE MOTIVACIONAL -->
                         <div class="card motivational-card">
                             <div class="card-header">
-                                <span class="card-title">💌 Mensaje Motivacional</span>
+                                <span class="card-title"> Mensaje Motivacional</span>
                                 <button class="close-btn">×</button>
                             </div>
                             <div class="card-body">
@@ -196,7 +196,7 @@ $fecha_hoy = date('l, j \d\e F');
                         <!-- SITIOS BLOQUEADOS LISTA -->
                         <div class="card">
                             <div class="card-header">
-                                <span class="card-title">🔒 Sitios Bloqueados</span>
+                                <span class="card-title"> Sitios Bloqueados</span>
                                 <span class="badge"><?php echo $sitios_monitoreados; ?></span>
                             </div>
                             <div class="card-body">
@@ -225,7 +225,7 @@ $fecha_hoy = date('l, j \d\e F');
                         <!-- INTENTOS DETECTADOS -->
                         <div class="card">
                             <div class="card-header">
-                                <span class="card-title">🚨 Intentos Detectados</span>
+                                <span class="card-title"> Intentos Detectados</span>
                             </div>
                             <div class="card-body">
                                 <div class="attempts-list">

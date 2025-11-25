@@ -1,11 +1,11 @@
 console.log('🛡️ BlockBet Popup cargado');
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ DOM listo');
+    console.log(' DOM listo');
     
     // Verificar sesión guardada
     chrome.storage.local.get(['usuarioEmail', 'usuarioId'], function(storage) {
-        console.log('📦 Storage:', storage);
+        console.log(' Storage:', storage);
         
         if (storage.usuarioEmail && storage.usuarioId) {
             mostrarStats(storage.usuarioEmail, storage.usuarioId);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function mostrarLogin() {
-    console.log('📝 Mostrando login');
+    console.log(' Mostrando login');
     document.getElementById('login-section').classList.remove('hidden');
     document.getElementById('stats-section').classList.add('hidden');
     document.getElementById('email').value = '';
@@ -48,7 +48,7 @@ function mostrarLogin() {
 }
 
 function mostrarStats(email, usuarioId) {
-    console.log('📊 Mostrando stats para:', email);
+    console.log(' Mostrando stats para:', email);
     
     document.getElementById('login-section').classList.add('hidden');
     document.getElementById('stats-section').classList.remove('hidden');
@@ -62,7 +62,7 @@ function mostrarStats(email, usuarioId) {
     fetch('http://localhost/blockbet/api/stats_extension.php?usuario_id=' + usuarioId)
         .then(function(response) { return response.json(); })
         .then(function(data) {
-            console.log('📈 Stats recibidas:', data);
+            console.log(' Stats recibidas:', data);
             
             if (data.success) {
                 document.getElementById('total-sitios').textContent = data.total_sitios;
@@ -74,12 +74,12 @@ function mostrarStats(email, usuarioId) {
             }
         })
         .catch(function(error) {
-            console.error('❌ Error al cargar stats:', error);
+            console.error(' Error al cargar stats:', error);
         });
 }
 
 function iniciarSesion() {
-    console.log('🔑 Iniciando sesión...');
+    console.log(' Iniciando sesión...');
     
     var email = document.getElementById('email').value.trim();
     var password = document.getElementById('password').value;
@@ -87,13 +87,13 @@ function iniciarSesion() {
     var btnLogin = document.getElementById('btn-login');
     
     if (!email || !password) {
-        mostrarError('❌ Por favor completa todos los campos');
+        mostrarError(' Por favor completa todos los campos');
         return;
     }
     
     // Validar email
     if (!email.includes('@')) {
-        mostrarError('❌ Ingresa un email válido');
+        mostrarError(' Ingresa un email válido');
         return;
     }
     
@@ -110,35 +110,35 @@ function iniciarSesion() {
         return response.json(); 
     })
     .then(function(data) {
-        console.log('📥 Respuesta login:', data);
+        console.log(' Respuesta login:', data);
         
         if (data.success) {
             chrome.storage.local.set({
                 usuarioId: data.usuario_id,
                 usuarioEmail: email
             }, function() {
-                console.log('💾 Datos guardados en storage');
+                console.log(' Datos guardados en storage');
                 
                 chrome.runtime.sendMessage({
                     action: 'setUsuario',
                     usuarioId: data.usuario_id
                 }, function(response) {
-                    console.log('📤 Notificado a background:', response);
+                    console.log(' Notificado a background:', response);
                     mostrarStats(email, data.usuario_id);
-                    btnLogin.innerHTML = '✨ Activar Protección';
+                    btnLogin.innerHTML = ' Activar Protección';
                     btnLogin.disabled = false;
                 });
             });
         } else {
-            mostrarError('❌ ' + (data.message || 'Credenciales incorrectas'));
-            btnLogin.innerHTML = '✨ Activar Protección';
+            mostrarError(' ' + (data.message || 'Credenciales incorrectas'));
+            btnLogin.innerHTML = ' Activar Protección';
             btnLogin.disabled = false;
         }
     })
     .catch(function(error) {
-        console.error('❌ Error:', error);
-        mostrarError('❌ Error de conexión. Verifica que el servidor esté activo.');
-        btnLogin.innerHTML = '✨ Activar Protección';
+        console.error(' Error:', error);
+        mostrarError(' Error de conexión. Verifica que el servidor esté activo.');
+        btnLogin.innerHTML = ' Activar Protección';
         btnLogin.disabled = false;
     });
 }

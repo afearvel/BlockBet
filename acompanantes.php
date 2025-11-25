@@ -285,7 +285,7 @@ $con_notif = count(array_filter($acompanantes, fn($a) => $a['notificar'] == 1));
         <a href="dashboard.php" class="back-link">← Volver al Dashboard</a>
 
         <div class="page-header">
-            <h1>🤝 Red de Apoyo</h1>
+            <h1> Red de Apoyo</h1>
             <p>Personas de confianza que te acompañan en tu proceso</p>
         </div>
 
@@ -311,7 +311,7 @@ $con_notif = count(array_filter($acompanantes, fn($a) => $a['notificar'] == 1));
 
         <!-- Agregar Acompañante -->
         <div class="add-support-card">
-            <h3 style="margin-bottom: 20px;">➕ Agregar Acompañante</h3>
+            <h3 style="margin-bottom: 20px;"> Agregar Acompañante</h3>
             <form method="POST">
                 <div class="form-grid">
                     <div class="form-group">
@@ -354,9 +354,9 @@ $con_notif = count(array_filter($acompanantes, fn($a) => $a['notificar'] == 1));
                         <div class="support-info">
                             <h4><?php echo htmlspecialchars($a['nombre']); ?></h4>
                             <p>
-                                📧 <?php echo htmlspecialchars($a['email']); ?>
+                                <?php echo htmlspecialchars($a['email']); ?>
                                 <?php if ($a['telefono']): ?>
-                                    • 📱 <?php echo htmlspecialchars($a['telefono']); ?>
+                                    <?php echo htmlspecialchars($a['telefono']); ?>
                                 <?php endif; ?>
                             </p>
                         </div>
@@ -367,7 +367,7 @@ $con_notif = count(array_filter($acompanantes, fn($a) => $a['notificar'] == 1));
                             <button 
                                 class="btn-toggle-notif <?php echo $a['notificar'] ? 'active' : 'inactive'; ?>"
                                 onclick="window.location.href='acompanantes.php?toggle_notif=<?php echo $a['id']; ?>'">
-                                <?php echo $a['notificar'] ? '🔔 Notif ON' : '🔕 Notif OFF'; ?>
+                                <?php echo $a['notificar'] ? ' Notif ON' : ' Notif OFF'; ?>
                             </button>
                         </div>
                         <div style="text-align: right;">

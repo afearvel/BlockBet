@@ -178,16 +178,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actualizar_meta'])) {
         <a href="dashboard.php" class="back-link">← Volver al Dashboard</a>
         
         <div class="page-header">
-            <h1>⚙️ Configuración</h1>
+            <h1> Configuración</h1>
             <p>Administra tu cuenta</p>
         </div>
 
         <?php if (isset($mensaje_exito)): ?>
-        <div class="alert alert-success">✓ <?php echo $mensaje_exito; ?></div>
+        <div class="alert alert-success"> <?php echo $mensaje_exito; ?></div>
         <?php endif; ?>
 
         <?php if (isset($mensaje_error)): ?>
-        <div class="alert alert-error">✗ <?php echo $mensaje_error; ?></div>
+        <div class="alert alert-error"> <?php echo $mensaje_error; ?></div>
         <?php endif; ?>
 
         <!-- Información del Usuario -->
@@ -215,36 +215,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actualizar_meta'])) {
                     <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($usuario->getEmail()); ?>" required>
                 </div>
                 
-                <button type="submit" name="actualizar_perfil" class="btn-save">💾 Guardar Cambios</button>
-            </form>
-        </div>
-
-        <!-- Meta de Recuperación -->
-        <div class="config-section">
-            <h2 class="section-title">🎯 Meta de Recuperación</h2>
-            <form method="POST">
-                <div class="form-group">
-                    <label for="meta">Días Objetivo</label>
-                    <input type="number" id="meta" name="meta" min="7" max="365" value="<?php echo $usuario->getMeta() ?? 30; ?>" required>
-                    <div class="help-text">Define cuántos días sin intentos quieres lograr (7-365 días)</div>
-                </div>
-                
-                <button type="submit" name="actualizar_meta" class="btn-save">🎯 Actualizar Meta</button>
+                <button type="submit" name="actualizar_perfil" class="btn-save"> Guardar Cambios</button>
             </form>
         </div>
 
         <!-- Enlaces Rápidos -->
         <div class="config-section">
-            <h2 class="section-title">⚡ Acciones Rápidas</h2>
+            <h2 class="section-title"> Acciones Rápidas</h2>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <a href="sitios_bloqueados.php" style="background: #e5e7eb; padding: 12px 24px; border-radius: 8px; text-decoration: none; color: #374151; font-weight: 600;">
-                    🔒 Sitios Bloqueados
+                     Sitios Bloqueados
                 </a>
                 <a href="acompanantes.php" style="background: #e5e7eb; padding: 12px 24px; border-radius: 8px; text-decoration: none; color: #374151; font-weight: 600;">
-                    👥 Acompañantes
+                     Acompañantes
                 </a>
                 <a href="logout.php" style="background: #fee2e2; padding: 12px 24px; border-radius: 8px; text-decoration: none; color: #991b1b; font-weight: 600;">
-                    🚪 Cerrar Sesión
+                     Cerrar Sesión
                 </a>
             </div>
         </div>
