@@ -4,6 +4,7 @@
 
 let sitiosBloqueados = [];
 let usuarioId = null;
+let proteccionActiva = false; // ⭐ NUEVA BANDERA
 
 // Al instalar
 chrome.runtime.onInstalled.addListener(function() {
@@ -24,6 +25,7 @@ async function cargarSitiosBloqueados() {
     
     if (!usuarioId) {
       console.log('No hay usuario logueado');
+      proteccionActiva = false; // ⭐ Desactivar
       return;
     }
     
@@ -33,10 +35,12 @@ async function cargarSitiosBloqueados() {
     
     if (data.success) {
       sitiosBloqueados = data.sitios.map(function(s) { return s.dominio; });
-      console.log('Sitios cargados:', sitiosBloqueados);
+      proteccionActiva = true; // ⭐ Activar
+      console.log('✅ Protección ACTIVADA. Sitios cargados:', sitiosBloqueados);
     }
   } catch (error) {
     console.error('Error al cargar sitios:', error);
+    proteccionActiva = false;
   }
 }
 
@@ -50,6 +54,12 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 // Verificar y bloquear
 function verificarYBloquear(tabId, url) {
   try {
+    // ⭐ VERIFICAR SI LA PROTECCIÓN ESTÁ ACTIVA
+    if (!proteccionActiva) {
+      console.log('🔓 Protección desactivada, permitiendo acceso');
+      return;
+    }
+    
     if (!url || url.startsWith('chrome://') || url.startsWith('chrome-extension://')) {
       return;
     }
@@ -67,7 +77,7 @@ function verificarYBloquear(tabId, url) {
     }
     
     if (estaBloqueado) {
-      console.log('BLOQUEADO:', dominio);
+      console.log('🚫 BLOQUEADO:', dominio);
       
       // Registrar intento
       registrarIntento(dominio);
@@ -110,7 +120,22 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     });
     return true;
   }
+  
+  // Desactivar protección 
+  if (request.action === 'clearSitios') {
+    console.log('🧹 Desactivando protección...');
+    sitiosBloqueados = [];
+    usuarioId = null;
+    proteccionActiva = false;
+    console.log('✅ Protección DESACTIVADA');
+    sendResponse({success: true});
+    return true;
+  }
 });
 
-// Recargar cada 5 minutos
-setInterval(cargarSitiosBloqueados, 5 * 60 * 1000);
+// Recargar cada 5 minutos (solo si está activa)
+setInterval(function() {
+  if (proteccionActiva && usuarioId) {
+    cargarSitiosBloqueados();
+  }
+}, 5 * 60 * 1000);

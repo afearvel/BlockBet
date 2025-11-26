@@ -23,8 +23,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('btn-logout').addEventListener('click', function() {
         if (confirm('¿Desactivar la protección?\n\nLos sitios ya no serán bloqueados.')) {
-            chrome.storage.local.clear(function() {
-                mostrarLogin();
+            // Primero notificar al background que limpie los sitios
+            chrome.runtime.sendMessage({
+                action: 'clearSitios'
+            }, function() {
+                // Luego limpiar storage local
+                chrome.storage.local.clear(function() {
+                    console.log('✅ Sesión cerrada y protección desactivada');
+                    mostrarLogin();
+                });
             });
         }
     });
