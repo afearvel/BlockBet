@@ -4,7 +4,7 @@
 
 let sitiosBloqueados = [];
 let usuarioId = null;
-let proteccionActiva = false; // ⭐ NUEVA BANDERA
+let proteccionActiva = false; //  NUEVA BANDERA
 
 // Al instalar
 chrome.runtime.onInstalled.addListener(function() {
@@ -25,7 +25,7 @@ async function cargarSitiosBloqueados() {
     
     if (!usuarioId) {
       console.log('No hay usuario logueado');
-      proteccionActiva = false; // ⭐ Desactivar
+      proteccionActiva = false; //  Desactivar
       return;
     }
     
@@ -35,8 +35,8 @@ async function cargarSitiosBloqueados() {
     
     if (data.success) {
       sitiosBloqueados = data.sitios.map(function(s) { return s.dominio; });
-      proteccionActiva = true; // ⭐ Activar
-      console.log('✅ Protección ACTIVADA. Sitios cargados:', sitiosBloqueados);
+      proteccionActiva = true; //  Activar
+      console.log(' Protección ACTIVADA. Sitios cargados:', sitiosBloqueados);
     }
   } catch (error) {
     console.error('Error al cargar sitios:', error);
@@ -54,9 +54,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 // Verificar y bloquear
 function verificarYBloquear(tabId, url) {
   try {
-    // ⭐ VERIFICAR SI LA PROTECCIÓN ESTÁ ACTIVA
+    // VERIFICAR SI LA PROTECCIÓN ESTÁ ACTIVA
     if (!proteccionActiva) {
-      console.log('🔓 Protección desactivada, permitiendo acceso');
+      console.log(' Protección desactivada, permitiendo acceso');
       return;
     }
     
@@ -77,7 +77,7 @@ function verificarYBloquear(tabId, url) {
     }
     
     if (estaBloqueado) {
-      console.log('🚫 BLOQUEADO:', dominio);
+      console.log(' BLOQUEADO:', dominio);
       
       // Registrar intento
       registrarIntento(dominio);
@@ -96,6 +96,7 @@ async function registrarIntento(dominio) {
   if (!usuarioId) return;
   
   try {
+    // 1. Registrar en la base de datos
     await fetch('http://localhost/blockbet/api/registrar_intento.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -104,7 +105,25 @@ async function registrarIntento(dominio) {
         dominio: dominio
       })
     });
-    console.log('Intento registrado:', dominio);
+    console.log(' Intento registrado:', dominio);
+    
+    // 2.  ENVIAR NOTIFICACIÓN A ACOMPAÑANTES
+    const notifResponse = await fetch('http://localhost/blockbet/api/enviar_notificacion.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        usuario_id: usuarioId,
+        dominio: dominio
+      })
+    });
+    
+    const notifData = await notifResponse.json();
+    if (notifData.success) {
+      console.log(` Notificación enviada a ${notifData.notificados} acompañante(s)`);
+    } else {
+      console.log(' No se enviaron notificaciones');
+    }
+    
   } catch (error) {
     console.error('Error al registrar:', error);
   }
@@ -123,11 +142,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   
   // Desactivar protección 
   if (request.action === 'clearSitios') {
-    console.log('🧹 Desactivando protección...');
+    console.log(' Desactivando protección...');
     sitiosBloqueados = [];
     usuarioId = null;
     proteccionActiva = false;
-    console.log('✅ Protección DESACTIVADA');
+    console.log(' Protección DESACTIVADA');
     sendResponse({success: true});
     return true;
   }

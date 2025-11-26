@@ -121,12 +121,12 @@
         </div>
         
         <div class="mensaje">
-            💪 Recuerda por qué empezaste. Cada momento de resistencia te hace más fuerte.
+             Recuerda por qué empezaste. Cada momento de resistencia te hace más fuerte.
         </div>
         
         <div class="buttons">
-            <a href="http://localhost/blockbet/dashboard.php" target="_blank" class="btn">
-                ✅ Ir al Dashboard
+            <a href="http://localhost/BLOCKBET/dashboard.php" target="_blank" class="btn">
+                 Ir al Dashboard
             </a>
             
             <a href="javascript:window.close()" class="btn btn-secondary">
@@ -135,17 +135,6 @@
         </div>
     </div>
     
-    <script>
-        // Obtener sitio desde URL
-        const params = new URLSearchParams(window.location.search);
-        const sitio = params.get('sitio');
-        
-        if (sitio) {
-            document.getElementById('sitio-loading').style.display = 'none';
-            const sitioDiv = document.getElementById('sitio-bloqueado');
-            sitioDiv.textContent = '🚫 ' + sitio;
-            sitioDiv.style.display = 'block';
-        }
-    </script>
+    <script src="bloqueado.js"></script>
 </body>
 </html>
